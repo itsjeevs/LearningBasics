@@ -103,4 +103,42 @@ public class LinkedList<E> {
         }
         return runner;
     }
+
+    public void reverse() {
+        if (isEmpty() || first.next == null) {
+            return;
+        }
+
+        Node<E> runner = first.next;
+        first.next = null;
+        Node<E> head = first;
+        Node<E> temp;
+        while (runner.next != null) {
+            temp = runner.next;
+            runner.next = head;
+            head =runner;
+            runner = temp;
+        }
+        runner.next=head;
+        first = runner;
+    }
+
+    public void recReverse(){
+        if(isEmpty() || first.next == null){
+            return;
+        }
+        reverse(first);
+    }
+
+    public Node<E> reverse(Node<E> node){
+        Node<E> rest = node.next;
+        if(rest == null){
+            first = node;
+            return node;
+        }
+        node.next = null;
+        reverse(rest);
+        rest.next = node;
+        return node;
+    }
 }

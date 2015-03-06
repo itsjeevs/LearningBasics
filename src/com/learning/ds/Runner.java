@@ -14,13 +14,16 @@ public class Runner {
         list.neatPrint();
 //        list.search("Meriya").neatPrint();
         list.insertFirst(new Node<String>("Undampori"));
+//        list.neatPrint();
+//        list.delete("Joseph");
+//        list.neatPrint();
+//        list.delete("Undampori");
+//        list.neatPrint();
+//        list.delete("Thomas");
+//        list.neatPrint();
+//        list.findMidNode().neatPrint();
         list.neatPrint();
-        list.delete("Joseph");
+        list.recReverse();
         list.neatPrint();
-        list.delete("Undampori");
-        list.neatPrint();
-        list.delete("Thomas");
-        list.neatPrint();
-        list.findMidNode().neatPrint();
     }
 }
