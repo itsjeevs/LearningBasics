@@ -141,4 +141,12 @@ public class LinkedList<E> {
         rest.next = node;
         return node;
     }
+
+
+    public Node<E> reverseRecursive(Node<E> node){
+        Node<E> rest = node.next;
+        node.next = null;
+        
+        return null;
+    }
 }
