@@ -176,10 +176,12 @@ public class LinkedList<E> {
         boolean foundLoop = false;
         while (fastRunner != null && fastRunner.next != null) {
 
-            if (fastRunner.next.equals(runner) || loopMap.containsKey(runner)) {
+            if (!loopTraversed && (fastRunner.next.equals(runner) || loopMap.containsKey(runner.next))) {
                 foundLoop = true;
-                if (loopMap.containsKey(runner)) {
-                    runner.neatPrint();
+                if (loopMap.containsKey(runner.next)) {
+                    for (Node<E> node : loopMap.keySet()) {
+                        System.out.println(node.data + "-> " + loopMap.get(node).data);
+                    }
                     loopTraversed = true;
                     runner = first;
                     fastRunner = first;
@@ -191,7 +193,9 @@ public class LinkedList<E> {
                     return;
                 }
             }
-            if (foundLoop) loopMap.put(runner.next, runner);
+            if (foundLoop && !loopTraversed) {
+                loopMap.put(runner.next, runner);
+            }
             fastRunner = fastRunner.next.next;
             runner = runner.next;
         }

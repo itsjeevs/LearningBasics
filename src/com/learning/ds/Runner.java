@@ -13,7 +13,7 @@ public class Runner {
         list.add(looper);
         list.add(new Node<String>("Thomas"));
         list.add(new Node<String>("Lytle"));
-        list.add(new Node<String>("Lytle"));
+        list.add(new Node<String>("Halstead"));
         list.add(new Node<String>("Racine"));
         list.add(new Node<String>("Taylor"));
         Node<String> ashland = new Node<String>("Ashland");
@@ -39,8 +39,12 @@ public class Runner {
             System.out.println("no Loop");
         }
         list.removeLoop();
+        neatPrint(list);
+
+    }
+
+    public static void neatPrint(LinkedList list){
         System.out.println();
         list.neatPrint();
-
     }
 }
