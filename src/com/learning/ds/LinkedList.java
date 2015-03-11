@@ -1,5 +1,8 @@
 package com.learning.ds;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by jejoseph on 3/3/15.
  */
@@ -82,6 +85,7 @@ public class LinkedList<E> {
         }
         if (first.next == null) {
             first.neatPrint();
+            return;
         }
         Node ptr = first;
         while (ptr.next != null) {
@@ -91,6 +95,7 @@ public class LinkedList<E> {
         }
         ptr.neatPrint();
     }
+
 
     public Node<E> findMidNode(){
         if (isEmpty())
@@ -142,11 +147,54 @@ public class LinkedList<E> {
         return node;
     }
 
+    public boolean containsLoop() {
+        if (isEmpty() || first.next == null) {
+            return false;
+        }
+        Node<E> runner = first;
+        Node<E> fastRunner = first;
+        while (fastRunner != null && fastRunner.next != null) {
 
-    public Node<E> reverseRecursive(Node<E> node){
-        Node<E> rest = node.next;
-        node.next = null;
-        
-        return null;
+            if (fastRunner.next.equals(runner)) {
+
+                return true;
+            }
+            fastRunner = fastRunner.next.next;
+            runner = runner.next;
+        }
+        return false;
+    }
+
+    public void removeLoop() {
+        if (isEmpty() || first.next == null) {
+            return ;
+        }
+        Node<E> runner = first;
+        Node<E> fastRunner = first;
+        Map<Node<E>,Node<E>> loopMap = new HashMap<Node<E>, Node<E>>();
+        boolean loopTraversed = false;
+        boolean foundLoop = false;
+        while (fastRunner != null && fastRunner.next != null) {
+
+            if (fastRunner.next.equals(runner) || loopMap.containsKey(runner)) {
+                foundLoop = true;
+                if (loopMap.containsKey(runner)) {
+                    runner.neatPrint();
+                    loopTraversed = true;
+                    runner = first;
+                    fastRunner = first;
+                }
+            }
+            if (loopTraversed) {
+                if (loopMap.containsKey(runner)) {
+                    loopMap.get(runner).next = null;
+                    return;
+                }
+            }
+            if (foundLoop) loopMap.put(runner.next, runner);
+            fastRunner = fastRunner.next.next;
+            runner = runner.next;
+        }
+        return ;
     }
 }

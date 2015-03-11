@@ -9,10 +9,17 @@ public class Runner {
         list.add(new Node<String>("Jeevan"));
         list.add(new Node<String>("Joseph"));
         list.add(new Node<String>("Meriya"));
+        Node<String> looper = new Node<String>("loop");
+        list.add(looper);
         list.add(new Node<String>("Thomas"));
+        list.add(new Node<String>("Lytle"));
+        list.add(new Node<String>("Lytle"));
+        list.add(new Node<String>("Racine"));
+        list.add(new Node<String>("Taylor"));
+        Node<String> ashland = new Node<String>("Ashland");
+        list.add(ashland);
+        ashland.next = looper;
 
-        list.neatPrint();
-//        list.search("Meriya").neatPrint();
         list.insertFirst(new Node<String>("Undampori"));
 //        list.neatPrint();
 //        list.delete("Joseph");
@@ -22,8 +29,18 @@ public class Runner {
 //        list.delete("Thomas");
 //        list.neatPrint();
 //        list.findMidNode().neatPrint();
+//        list.neatPrint();
+//        list.recReverse();
+//        list.neatPrint();
+
+        if (list.containsLoop()) {
+            System.out.println("contains loop");
+        } else {
+            System.out.println("no Loop");
+        }
+        list.removeLoop();
+        System.out.println();
         list.neatPrint();
-        list.recReverse();
-        list.neatPrint();
+
     }
 }
